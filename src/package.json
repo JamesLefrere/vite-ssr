@@ -26,6 +26,7 @@
     "react": "^16 || ^17",
     "react-dom": "^16 || ^17",
     "react-helmet-async": "^1.0.0",
+    "styled-components": "^5",
     "vite": "^2.0.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0"
@@ -47,6 +48,9 @@
       "optional": true
     },
     "react-helmet-async": {
+      "optional": true
+    },
+    "styled-components": {
       "optional": true
     }
   },

@@ -3,6 +3,7 @@ import ssrPrepass from 'react-ssr-prepass'
 import { renderToString } from 'react-dom/server.js'
 import { StaticRouter } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
+import { ServerStyleSheet } from 'styled-components'
 import { createUrl, getFullPath, withoutSuffix } from '../utils/route'
 import { serializeState } from '../utils/state'
 import { createRouter } from './utils'
@@ -47,6 +48,8 @@ const viteSSR: SsrHandler = function (
   },
   hook
 ) {
+  const sheet = new ServerStyleSheet()
+
   return async function (url, { manifest, preload = false, ...extra } = {}) {
     url = createUrl(url)
     const routeBase = base && withoutSuffix(base({ url }), '/')
@@ -90,7 +93,7 @@ const viteSSR: SsrHandler = function (
     )
 
     await ssrPrepass(app, prepassVisitor)
-    const body = await render(app)
+    const body = await render(sheet.collectStyles(app))
 
     const currentRoute = context.router.getCurrentRoute()
     if (currentRoute) {
@@ -108,7 +111,7 @@ const viteSSR: SsrHandler = function (
 
     const styleTags: string =
       // @ts-ignore
-      (styledContext.styles && styledContext.styles()) || ''
+      ((styledContext.styles && styledContext.styles()) || '') + sheet.getStyleTags().join('')
 
     const headTags =
       Object.keys(tags)

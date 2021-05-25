@@ -45,6 +45,7 @@
     "react-dom": "^16 || ^17",
     "react-helmet-async": "^1.0.0",
     "react-router-dom": "^5.0.0",
+    "styled-components": "^5",
     "vite": "^2.3.2",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0"
@@ -70,6 +71,9 @@
     },
     "react-router-dom": {
       "optional": true
+    },
+    "styled-components": {
+      "optional": true
     }
   },
   "dependencies": {
@@ -87,6 +91,7 @@
     "@types/react-dom": "^17.0.3",
     "@types/react-router-config": "^5.0.2",
     "@types/react-router-dom": "^5.1.7",
+    "@types/styled-components": "^5",
     "npm-run-all": "^4.1.5",
     "tsc": "^1.20150623.0",
     "typescript": "^4.2.3"
